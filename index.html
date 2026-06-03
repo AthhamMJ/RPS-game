@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AI Rock Paper Scissors</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+  <div class="noise"></div>
+
+  <div class="app">
+
+    <!-- HEADER -->
+    <header class="header">
+      <div class="header-title">
+        <span class="chip">AI Powered</span>
+        <h1>Rock · Paper · Scissors</h1>
+      </div>
+      <div class="scoreboard">
+        <div class="score-cell">
+          <span class="score-name">You</span>
+          <span class="score-val" id="scorePlayer">0</span>
+        </div>
+        <div class="score-divider">:</div>
+        <div class="score-cell">
+          <span class="score-name">CPU</span>
+          <span class="score-val" id="scoreCpu">0</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- MAIN STAGE -->
+    <main class="stage">
+
+      <!-- LEFT: webcam + prediction -->
+      <section class="cam-side">
+        <div class="cam-frame" id="camFrame">
+          <div id="webcam-container"></div>
+          <div class="cam-overlay" id="camOverlay">
+            <p>Camera off</p>
+          </div>
+        </div>
+        <div class="prediction-bar">
+          <div class="pred-item" id="predRock">
+            <span class="pred-emoji">✊</span>
+            <div class="pred-track"><div class="pred-fill" id="fillRock"></div></div>
+            <span class="pred-pct" id="pctRock">0%</span>
+          </div>
+          <div class="pred-item" id="predPaper">
+            <span class="pred-emoji">✋</span>
+            <div class="pred-track"><div class="pred-fill" id="fillPaper"></div></div>
+            <span class="pred-pct" id="pctPaper">0%</span>
+          </div>
+          <div class="pred-item" id="predScissors">
+            <span class="pred-emoji">✌️</span>
+            <div class="pred-track"><div class="pred-fill" id="fillScissors"></div></div>
+            <span class="pred-pct" id="pctScissors">0%</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- CENTER: result display -->
+      <section class="center-panel">
+        <div class="versus-display">
+          <div class="move-card" id="cardPlayer">
+            <span class="move-emoji" id="emojiPlayer">❓</span>
+            <span class="move-label">Your move</span>
+          </div>
+          <div class="vs-circle">VS</div>
+          <div class="move-card" id="cardCpu">
+            <span class="move-emoji" id="emojiCpu">❓</span>
+            <span class="move-label">CPU move</span>
+          </div>
+        </div>
+
+        <div class="result-box" id="resultBox">
+          <span id="resultText">Show your hand to the camera!</span>
+        </div>
+
+        <div class="round-info">Round <span id="roundNum">1</span> of 5</div>
+      </section>
+
+    </main>
+
+    <!-- CONTROLS -->
+    <div class="controls">
+      <button class="btn btn-primary" id="btnStart">📷 Start Camera</button>
+      <button class="btn btn-action" id="btnPlay" disabled>Play Round ▶</button>
+      <button class="btn btn-ghost" id="btnReset">Reset</button>
+    </div>
+
+    <div class="status-bar" id="statusBar">Click "Start Camera" to begin</div>
+
+    <!-- GAME OVER OVERLAY -->
+    <div class="overlay" id="overlay" hidden>
+      <div class="overlay-card">
+        <div class="overlay-emoji" id="overlayEmoji">🏆</div>
+        <h2 id="overlayTitle">You Win!</h2>
+        <p id="overlaySub">Final score: 3 – 2</p>
+        <button class="btn btn-primary" id="btnPlayAgain">Play Again</button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- TensorFlow + Teachable Machine -->
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>
